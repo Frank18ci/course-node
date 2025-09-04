@@ -7,9 +7,13 @@
   "type": "commonjs",
   "main": "app.js",
   "scripts": {
-    "start": "nodemon app.js"
+    "start": "nodemon app.js",
+    "dev": "nodemon express/app.js"
   },
   "devDependencies": {
     "nodemon": "^3.1.10"
+  },
+  "dependencies": {
+    "express": "^5.1.0"
   }
 }

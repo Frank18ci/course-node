@@ -22,6 +22,18 @@ http.createServer((req, res) => {
     } else if(parsedURL.pathname === "/profile" && nombre && req.method === "GET") {
         res.statusCode = 200
         res.end(JSON.stringify({"message": showMessage(`Accediendo al perfil de ${nombre}`)}))
+    } else if(req.url === "/register" && req.method === "POST") {
+        let body = ''
+        req.on('data', data => {
+            body += data.toString()
+        })
+        req.on('end', () => {
+            const parsedData = JSON.parse(body)
+            const {username, email} = parsedData
+            console.log(`Usuario: ${username}, Email: ${email}`)
+            res.statusCode = 201
+            res.end(JSON.stringify({"message": "Datos registrados"}))
+        })
     } else {
         res.statusCode = 404
         res.end(JSON.stringify({"message": "Recurso no encontrado"}))

@@ -1,8 +1,9 @@
 const express = require('express')
 const router = express.Router()
 const userController = require('../controller/userController')
+const userLogged = require('../middlewares/userLogged')
 
-router.get('/', userController.getAllUsers)
+router.get('/', [userLogged], userController.getAllUsers)
 router.get('/:id', userController.getUser)
 router.post('/', userController.createUser)
 router.put('/:id', userController.updateUser)
